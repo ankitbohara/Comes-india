@@ -74,7 +74,10 @@ const ProductDetailPage: React.FC = () => {
         </div>
 
         {/* Specs + Applications */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '3rem' }}>
+        <div 
+        // style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '3rem' }}
+        className="detail-specs-grid"
+        >
           <div style={{ background: 'var(--gray1)', border: '1px solid var(--border)', borderRadius: 6, padding: '2rem' }}>
             <div className="label-tag" style={{ marginBottom: '1.2rem' }}>{t('pr.spec')}</div>
             <table className="spec-table">
@@ -116,7 +119,10 @@ const ProductDetailPage: React.FC = () => {
           <div style={{ paddingBottom: '4rem' }}>
             <div className="label-tag">Other Heads</div>
             <h2 className="section-title" style={{ marginBottom: '2rem' }}>You May Also <span>Consider</span></h2>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: '1.5rem' }}>
+            <div 
+            // style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: '1.5rem' }}
+            className="detail-related-grid"
+            >
               {related.map(p => <ProductCard key={p.id} product={p} />)}
             </div>
           </div>

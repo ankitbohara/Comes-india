@@ -1072,6 +1072,21 @@ img {
   transform: scale(1.12);
   box-shadow: 0 6px 28px rgba(37, 211, 102, 0.6);
 }
+
+
+/* Product Detail — responsive grids */
+.detail-specs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.detail-related-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
 @media (max-width: 1024px) {
   .prod-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -1150,6 +1165,13 @@ img {
   .detail-grid {
     padding: 2rem 0;
   }
+
+  .detail-specs-grid  { grid-template-columns: 1fr; }
+  .detail-related-grid { grid-template-columns: 1fr; }
+  .detail-grid        { padding: 2rem 0; }
+  .cta-box            { flex-direction: column; align-items: flex-start; padding: 1.5rem; }
+  .breadcrumb         { padding: .8rem 1.2rem; }
+  
 }
 @media (max-width: 480px) {
   .proc-grid {
