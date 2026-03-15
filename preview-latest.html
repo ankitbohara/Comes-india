@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>CO.ME.S India – Stone Polishing Solutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+<style>
+:root {
+  --red:    #9B1C1C;
+  --red2:   #C0392B;
+  --red3:   #7A1515;
+  --black:  #1A1A1A;
+  --gray1:  #F8F8F8;
+  --gray2:  #F0EFEF;
+  --gray3:  #E0DEDE;
+  --muted:  #666;
+  --white:  #FFFFFF;
+  --border: #E2E0E0;
+  --font-display: "Bebas Neue", sans-serif;
+  --font-body:    "Rajdhani", sans-serif;
+  --font-mono:    "Space Mono", monospace;
+  --nav-h: 70px;
+  --shadow: 0 2px 20px rgba(0,0,0,.08);
+  --shadow-md: 0 4px 32px rgba(0,0,0,.12);
+}
+*, *::before, *::after { box-sizing: border-box; margin:0; padding:0; }
+html { scroll-behavior: smooth; }
+body { background: var(--white); color: var(--black); font-family: var(--font-body); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+a { text-decoration: none; color: inherit; }
+img { display: block; max-width: 100%; }
+::selection { background: var(--red); color: #fff; }
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-thumb { background: var(--red); border-radius: 2px; }
+
+/* ── BUTTONS ─────────────────────────────────────────────── */
+.btn-red {
+  background: var(--red);
+  color: #fff;
+  padding: .75rem 2rem;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: .82rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  transition: background .2s, transform .15s, box-shadow .2s;
+}
+.btn-red:hover { background: var(--red2); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(155,28,28,.3); }
+
+.btn-outline {
+  background: transparent;
+  color: var(--red);
+  padding: .75rem 2rem;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: .82rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  border: 2px solid var(--red);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  transition: background .2s, color .2s, transform .15s;
+}
+.btn-outline:hover { background: var(--red); color: #fff; transform: translateY(-2px); }
+
+.btn-wa {
+  background: #25D366;
+  color: #fff;
+  padding: .75rem 1.8rem;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: .82rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  transition: background .2s, transform .15s, box-shadow .2s;
+}
+.btn-wa:hover { background: #1EBE5C; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37,211,102,.35); }
+
+/* ── TYPOGRAPHY ──────────────────────────────────────────── */
+.label-tag {
+  font-family: var(--font-mono);
+  font-size: .62rem;
+  letter-spacing: .3em;
+  color: var(--red);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  margin-bottom: .8rem;
+}
+.label-tag::before { content: ''; width: 28px; height: 2px; background: var(--red); display: inline-block; flex-shrink: 0; }
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 4.5vw, 4rem);
+  line-height: .95;
+  letter-spacing: .02em;
+  color: var(--black);
+  margin-bottom: 1.2rem;
+}
+.section-title span { color: var(--red); }
+
+/* ── LAYOUT ──────────────────────────────────────────────── */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+.section-pad { padding: 6rem 0; }
+
+/* ── NAV ─────────────────────────────────────────────────── */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  height: var(--nav-h);
+  display: flex; align-items: center;
+}
+.nav-inner {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  width: 100%; padding: 0 2rem;
+}
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-link {
+  font-family: var(--font-body); font-weight: 600;
+  font-size: .85rem; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--muted); background: none; border: none; cursor: pointer;
+  padding: .3rem 0; position: relative; transition: color .2s;
+}
+.nav-link::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:2px; background:var(--red); transition:width .2s; }
+.nav-link:hover, .nav-link.active { color: var(--black); }
+.nav-link:hover::after, .nav-link.active::after { width: 100%; }
+.nav-right { display: flex; align-items: center; gap: 1rem; }
+.hamburger { display: none; background: none; border: none; cursor: pointer; padding: .3rem; }
+
+/* ── LANG SWITCHER ───────────────────────────────────────── */
+.lang-btn {
+  background: var(--gray1); border: 1px solid var(--border);
+  color: var(--black); font-family: var(--font-mono); font-size: .65rem;
+  letter-spacing: .1em; padding: .4rem .8rem; cursor: pointer;
+  display: flex; align-items: center; gap: .5rem;
+  border-radius: 4px; transition: border-color .2s, background .2s;
+}
+.lang-btn:hover { border-color: var(--red); background: #fff8f8; }
+.lang-menu {
+  position: absolute; top: calc(100% + 6px); right: 0;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 6px; min-width: 160px; z-index: 200;
+  box-shadow: var(--shadow-md); overflow: hidden;
+}
+.lang-item {
+  display: flex; justify-content: space-between; align-items: center;
+  width: 100%; background: transparent; border: none;
+  border-bottom: 1px solid var(--border); color: var(--black);
+  font-family: var(--font-body); font-size: .9rem; font-weight: 600;
+  padding: .7rem 1rem; cursor: pointer; transition: background .15s;
+}
+.lang-item:last-child { border-bottom: none; }
+.lang-item:hover { background: #fff5f5; }
+.lang-item.selected { background: #fff0f0; color: var(--red); }
+
+/* ── HERO ────────────────────────────────────────────────── */
+.hero {
+  min-height: 100vh;
+  display: grid; grid-template-columns: 1fr 1fr;
+  background: var(--white);
+  position: relative; overflow: hidden;
+}
+.hero-left {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 8rem 3rem 5rem 4rem;
+}
+.hero-eyebrow {
+  font-family: var(--font-mono); font-size: .65rem; letter-spacing: .3em;
+  color: var(--red); text-transform: uppercase; margin-bottom: 1.5rem;
+  display: flex; align-items: center; gap: .8rem;
+}
+.hero-eyebrow::before { content:''; width:32px; height:2px; background:var(--red); display:inline-block; flex-shrink:0; }
+.hero-h1 {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 8vw, 7rem);
+  line-height: .9; letter-spacing: .02em;
+  color: var(--black); margin-bottom: 1.5rem;
+}
+.hero-h1 span { color: var(--red); }
+.hero-sub { font-size: 1rem; line-height: 1.75; color: var(--muted); max-width: 420px; margin-bottom: 2.5rem; }
+.hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+.hero-stats {
+  display: flex; gap: 2.5rem; margin-top: 3.5rem;
+  padding-top: 2.5rem; border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+.stat-n { font-family: var(--font-display); font-size: 2.6rem; color: var(--red); line-height: 1; }
+.stat-l { font-family: var(--font-mono); font-size: .6rem; letter-spacing: .2em; color: var(--muted); text-transform: uppercase; margin-top: .3rem; }
+.hero-right {
+  position: relative; background: var(--gray1);
+  overflow: hidden;
+}
+.hero-right img { width: 100%; height: 100%; object-fit: cover; }
+.hero-right::after {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 80px;
+  background: linear-gradient(to right, var(--white), transparent);
+}
+.hero-badge {
+  position: absolute; bottom: 2rem; left: -1rem;
+  background: var(--red); color: #fff;
+  padding: 1.2rem 1.8rem; z-index: 2;
+  box-shadow: var(--shadow-md);
+}
+.hero-badge-n { font-family: var(--font-display); font-size: 2.4rem; line-height: 1; }
+.hero-badge-t { font-family: var(--font-mono); font-size: .55rem; letter-spacing: .12em; margin-top: .3rem; opacity: .85; }
+
+/* ── TICKER ──────────────────────────────────────────────── */
+.ticker-bar {
+  background: var(--red); color: #fff;
+  padding: .6rem 0; overflow: hidden;
+  font-family: var(--font-mono); font-size: .65rem; letter-spacing: .25em; text-transform: uppercase;
+}
+.ticker-track { display: inline-flex; gap: 4rem; white-space: nowrap; animation: ticker 30s linear infinite; }
+@keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+/* ── ABOUT ───────────────────────────────────────────────── */
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+.about-img-wrap { position: relative; }
+.about-img-wrap img { width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: 2px; }
+.about-badge {
+  position: absolute; bottom: -1.5rem; right: -1.5rem;
+  background: var(--red); color: #fff;
+  width: 120px; height: 120px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+  box-shadow: var(--shadow-md);
+}
+.about-badge-n { font-family: var(--font-display); font-size: 2.4rem; line-height: 1; }
+.about-badge-t { font-family: var(--font-mono); font-size: .52rem; letter-spacing: .1em; margin-top: .25rem; opacity: .85; }
+.about-p { color: var(--muted); line-height: 1.8; font-size: 1rem; margin-bottom: 1.2rem; }
+.feat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
+.feat-card {
+  border: 1px solid var(--border); padding: 1.3rem;
+  border-radius: 4px; transition: border-color .2s, box-shadow .2s, transform .2s;
+  background: var(--white);
+}
+.feat-card:hover { border-color: var(--red); box-shadow: 0 4px 16px rgba(155,28,28,.1); transform: translateY(-2px); }
+.feat-card h4 { font-family: var(--font-body); font-weight: 700; font-size: .85rem; letter-spacing: .08em; text-transform: uppercase; color: var(--black); margin: .6rem 0 .4rem; }
+.feat-card p { color: var(--muted); font-size: .83rem; line-height: 1.6; }
+
+/* ── PRODUCTS ────────────────────────────────────────────── */
+.products-bg { background: var(--gray1); }
+.prod-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+.prod-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 6px; overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform .25s, box-shadow .25s, border-color .25s;
+  display: flex; flex-direction: column;
+}
+.prod-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); border-color: var(--red); }
+.prod-img-wrap { background: var(--gray1); display: flex; align-items: center; justify-content: center; aspect-ratio: 1; padding: 2rem; cursor: pointer; overflow: hidden; }
+.prod-img { width: 100%; height: 100%; object-fit: contain; transition: transform .4s; filter: drop-shadow(0 8px 24px rgba(0,0,0,.12)); }
+.prod-card:hover .prod-img { transform: scale(1.06); }
+.prod-info { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
+.prod-tag { font-family: var(--font-mono); font-size: .6rem; letter-spacing: .25em; color: var(--red); text-transform: uppercase; margin-bottom: .4rem; }
+.prod-name { font-family: var(--font-display); font-size: 2rem; letter-spacing: .04em; color: var(--black); margin-bottom: .3rem; cursor: pointer; }
+.prod-tagline { color: var(--muted); font-size: .85rem; line-height: 1.5; margin-bottom: 1.2rem; flex: 1; }
+.prod-actions { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; }
+
+/* ── SERVICES ────────────────────────────────────────────── */
+.svc-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+.svc-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 6px; overflow: hidden;
+  transition: transform .25s, box-shadow .25s, border-color .25s;
+}
+.svc-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--red); }
+.svc-img { width: 100%; aspect-ratio: 16/9; object-fit: cover; transition: transform .4s; }
+.svc-card:hover .svc-img { transform: scale(1.04); }
+.svc-body { padding: 1.5rem; }
+.svc-num { font-family: var(--font-display); font-size: 3rem; color: var(--border); line-height: 1; margin-bottom: .8rem; transition: color .2s; }
+.svc-card:hover .svc-num { color: rgba(155,28,28,.2); }
+.svc-card h3 { font-family: var(--font-body); font-weight: 700; font-size: .9rem; letter-spacing: .1em; text-transform: uppercase; color: var(--black); margin-bottom: .6rem; }
+.svc-card p { color: var(--muted); font-size: .85rem; line-height: 1.7; }
+
+/* ── PROCESS ─────────────────────────────────────────────── */
+.process-bg { background: var(--gray1); }
+.proc-grid { display: grid; grid-template-columns: repeat(5,1fr); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+.proc-step { padding: 2rem 1.5rem; border-right: 1px solid var(--border); background: var(--white); transition: background .2s; }
+.proc-step:last-child { border-right: none; }
+.proc-step:hover { background: #fff5f5; }
+.proc-n { font-family: var(--font-display); font-size: 3.5rem; color: var(--red); opacity: .25; line-height: 1; margin-bottom: .8rem; }
+.proc-step h4 { font-family: var(--font-body); font-weight: 700; font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; color: var(--black); margin-bottom: .7rem; line-height: 1.4; }
+.proc-li { font-size: .78rem; color: var(--muted); padding-left: .9rem; position: relative; margin-bottom: .3rem; }
+.proc-li::before { content: '—'; position: absolute; left: 0; color: var(--red); font-size: .7rem; }
+
+/* ── FAQ ─────────────────────────────────────────────────── */
+.faq-wrap { max-width: 800px; }
+.faq-item { border-bottom: 1px solid var(--border); }
+.faq-q {
+  width: 100%; background: none; border: none; color: var(--black);
+  font-family: var(--font-body); font-weight: 600; font-size: 1rem;
+  text-align: left; padding: 1.5rem 0; cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+  transition: color .2s;
+}
+.faq-q:hover, .faq-q.open { color: var(--red); }
+.faq-icon { font-size: 1.2rem; color: var(--red); transition: transform .3s; flex-shrink: 0; font-weight: 400; }
+.faq-icon.open { transform: rotate(45deg); }
+.faq-body { overflow: hidden; max-height: 0; transition: max-height .35s ease, padding .3s; color: var(--muted); font-size: .93rem; line-height: 1.8; }
+.faq-body.open { max-height: 260px; padding-bottom: 1.5rem; }
+
+/* ── CONTACT ─────────────────────────────────────────────── */
+.contact-bg { background: var(--gray1); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+.cinfo-item { display: flex; gap: 1rem; padding: 1.2rem; background: var(--white); border: 1px solid var(--border); border-radius: 6px; margin-bottom: 1rem; transition: border-color .2s, box-shadow .2s; }
+.cinfo-item:hover { border-color: var(--red); box-shadow: 0 2px 12px rgba(155,28,28,.1); }
+.cinfo-icon { font-size: 1.3rem; flex-shrink: 0; }
+.cinfo-label { font-family: var(--font-mono); font-size: .6rem; letter-spacing: .22em; color: var(--red); text-transform: uppercase; margin-bottom: .3rem; }
+.cinfo-val { color: var(--muted); font-size: .88rem; line-height: 1.6; }
+.form-group { display: flex; flex-direction: column; gap: .4rem; margin-bottom: 1rem; }
+.form-label { font-family: var(--font-mono); font-size: .6rem; letter-spacing: .22em; color: var(--red); text-transform: uppercase; }
+.form-input {
+  background: var(--white); border: 1px solid var(--border); color: var(--black);
+  font-family: var(--font-body); font-size: .95rem; padding: .75rem 1rem;
+  border-radius: 4px; outline: none; width: 100%; transition: border-color .2s, box-shadow .2s;
+}
+.form-input:focus { border-color: var(--red); box-shadow: 0 0 0 3px rgba(155,28,28,.08); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+/* ── PRODUCT DETAIL ──────────────────────────────────────── */
+.breadcrumb { background: var(--gray1); border-bottom: 1px solid var(--border); padding: 1rem 2rem; display: flex; align-items: center; gap: .7rem; font-family: var(--font-mono); font-size: .62rem; letter-spacing: .18em; text-transform: uppercase; }
+.bc-link { color: var(--muted); cursor: pointer; transition: color .2s; }
+.bc-link:hover { color: var(--red); }
+.bc-sep { color: var(--border); }
+.bc-cur { color: var(--red); }
+.detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; padding: 4rem 0; align-items: start; }
+.gallery-main { background: var(--gray1); border: 1px solid var(--border); border-radius: 6px; display: flex; align-items: center; justify-content: center; aspect-ratio: 1; overflow: hidden; margin-bottom: .8rem; }
+.gallery-main img { width: 100%; height: 100%; object-fit: contain; padding: 2rem; filter: drop-shadow(0 8px 24px rgba(0,0,0,.15)); transition: opacity .3s; }
+.thumb-row { display: flex; gap: .6rem; }
+.thumb { flex: 1; aspect-ratio: 1; border: 2px solid var(--border); border-radius: 4px; overflow: hidden; cursor: pointer; transition: border-color .2s; background: var(--gray1); }
+.thumb.active { border-color: var(--red); }
+.thumb img { width: 100%; height: 100%; object-fit: contain; padding: .3rem; opacity: .6; transition: opacity .2s; }
+.thumb.active img, .thumb:hover img { opacity: 1; }
+.spec-table { width: 100%; border-collapse: collapse; }
+.spec-row { border-bottom: 1px solid var(--border); }
+.spec-l { padding: .85rem 0; font-weight: 600; font-size: .82rem; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; width: 45%; }
+.spec-v { padding: .85rem 0; font-weight: 600; font-size: .9rem; color: var(--black); }
+.app-item { display: flex; align-items: center; gap: 1rem; padding: .9rem 1rem; border: 1px solid var(--border); border-radius: 4px; margin-bottom: .7rem; background: var(--white); transition: border-color .2s, background .2s; }
+.app-item:hover { border-color: var(--red); background: #fff8f8; }
+.app-n { font-family: var(--font-display); font-size: 1.3rem; color: var(--red); opacity: .4; line-height: 1; flex-shrink: 0; }
+.cta-box { background: var(--red); padding: 2.5rem 3rem; border-radius: 6px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; margin: 3rem 0; }
+.cta-box h3 { font-family: var(--font-display); font-size: 2rem; color: #fff; line-height: 1.1; margin-bottom: .4rem; }
+.cta-box p { color: rgba(255,255,255,.8); font-size: .9rem; }
+
+/* ── FOOTER ──────────────────────────────────────────────── */
+.footer { background: var(--black); color: #fff; padding: 4rem 0 2rem; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; padding-bottom: 2.5rem; border-bottom: 1px solid #2a2a2a; }
+.footer-desc { color: #888; font-size: .88rem; line-height: 1.7; max-width: 300px; margin-top: .8rem; margin-bottom: 1.5rem; }
+.footer-h { font-family: var(--font-mono); font-size: .6rem; letter-spacing: .28em; color: var(--red); text-transform: uppercase; margin-bottom: 1rem; }
+.footer-link { color: #888; font-size: .88rem; background: none; border: none; cursor: pointer; text-align: left; padding: .3rem 0; display: block; font-family: var(--font-body); transition: color .2s; width: 100%; }
+.footer-link:hover { color: #fff; }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 1.5rem; color: #555; font-family: var(--font-mono); font-size: .6rem; letter-spacing: .1em; flex-wrap: wrap; gap: .5rem; }
+
+/* ── WA FLOAT ────────────────────────────────────────────── */
+.wa-float {
+  position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 99;
+  background: #25D366; color: #fff; border: none; cursor: pointer;
+  width: 56px; height: 56px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 20px rgba(37,211,102,.45);
+  transition: transform .2s, box-shadow .2s;
+}
+.wa-float:hover { transform: scale(1.12); box-shadow: 0 6px 28px rgba(37,211,102,.6); }
+.wa-float svg { width: 28px; height: 28px; }
+
+/* ── RESPONSIVE ──────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .prod-grid { grid-template-columns: repeat(2,1fr); }
+  .svc-grid { grid-template-columns: repeat(2,1fr); }
+  .proc-grid { grid-template-columns: repeat(3,1fr); }
+}
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; }
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-left { padding: 6rem 1.5rem 3rem; }
+  .hero-right { display: none; }
+  .about-grid, .contact-grid, .detail-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .about-badge { bottom: 1rem; right: 1rem; }
+  .prod-grid { grid-template-columns: 1fr; }
+  .svc-grid { grid-template-columns: 1fr; }
+  .proc-grid { grid-template-columns: repeat(2,1fr); }
+  .feat-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .container { padding: 0 1.2rem; }
+  .section-pad { padding: 4rem 0; }
+  .form-row { grid-template-columns: 1fr; }
+  .breadcrumb { flex-wrap: wrap; }
+}
+@media (max-width: 480px) {
+  .proc-grid { grid-template-columns: 1fr 1fr; }
+  .hero-stats { gap: 1.5rem; }
+  .hero-btns { flex-direction: column; }
+  .cta-box { padding: 1.8rem; }
+}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script>
+window.LOGO_URI = "data:image/png;base64,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";
+</script>
+<script type="text/babel">
+const { createContext, useContext, useState, useCallback, useRef, useEffect } = React;
+
+// ── TRANSLATIONS ──────────────────────────────────────────────
+const T = {
+  en:{
+    'nav.home':'Home','nav.about':'About','nav.products':'Products','nav.services':'Services','nav.contact':'Contact','nav.cta':'Get In Touch',
+    'hero.eye':'Authorised COMES Italy Partner · India',
+    'hero.t1':'STONE','hero.t2':'POLISHING','hero.t3':'EXCELLENCE',
+    'hero.sub':'The official Indian partner of COMES Italy — delivering world-class polishing heads, genuine spare parts, and expert service across the nation.',
+    'hero.btn1':'Explore Heads','hero.btn2':'Get Support',
+    's1n':'3+','s1l':'Head Models','s2n':'24/7','s2l':'Emergency Support','s3n':'PAN','s3l':'India Coverage',
+    'ab.lbl':'About Us','ab.t1':'Italian','ab.t2':'Innovation','ab.t3':'In Indian Industry',
+    'ab.p1':'COMES INDIA is the sole authorised partner of COMES Italy — the global leader in stone polishing machine heads. We bring Italian engineering precision to every marble and granite processing plant across India.',
+    'ab.p2':'Our engineering team ensures 100% compatibility, durability, and performance for COMES Head units, with genuine spare parts, expert servicing, and full installation support.',
+    'ab.f1t':'Original Machinery','ab.f1d':'Authentic COMES Italy heads — HTS6, STORM5, RG6 — built to global quality standards.',
+    'ab.f2t':'Certified Spares','ab.f2d':'Seals, gears, rings, holders — 100% original, tested for reliability and long life.',
+    'ab.f3t':'Expert Maintenance','ab.f3d':'From preventive care to full overhauls — our service team keeps your machinery running.',
+    'ab.f4t':'Complete Support','ab.f4d':'Consultation to installation, spare supply to after-sales — end-to-end coverage nationwide.',
+    'pr.lbl':'Our Heads','pr.t1':'CO.ME.S Italy','pr.t2':'Imported Range','pr.all':'View All Products',
+    'pr.tag':'Polishing Head','pr.det':'View Details','pr.wa':'WhatsApp Enquiry','pr.now':'Enquire on WhatsApp',
+    'pr.spec':'Technical Specifications','pr.feat':'Key Features','pr.app':'Applications','pr.back':'← Back to Products',
+    'sv.lbl':'Our Services','sv.t1':'Trusted Industrial','sv.t2':'Solutions',
+    'pc.lbl':'How We Work','pc.t1':'Our Business','pc.t2':'Working Process',
+    'fq.lbl':'FAQ','fq.t1':'Common','fq.t2':'Questions',
+    'ct.lbl':'Get In Touch','ct.t1':"Let's Talk Stone",'ct.t2':'Polishing Solutions',
+    'ct.addr':'H-163, Vinayak City, RIICO Industrial Area, Bindayaka, Jaipur – Rajasthan 302041',
+    'ct.hrs':'Monday – Saturday, 10:00 AM – 6:00 PM IST',
+    'ct.fn':'Your Name','ct.fp':'Full name','ct.fc':'Phone / Email','ct.fcp':'+91 or email',
+    'ct.fm':'Machine Model','ct.fmp':'e.g. HTS6-V12, STORM5','ct.fmsg':'Message','ct.fmsgp':'Describe your requirement…',
+    'ct.sub':'Send Message →','ct.ok':"Thank you! We'll be in touch shortly.",
+    'ft.desc':'Authorised COMES Italy partner for stone polishing machine heads, spare parts, and expert service across India.',
+    'ft.ql':'Quick Links','ft.pr':'Products','ft.copy':'© 2025 COMES Machine India Pvt. Ltd. All rights reserved.',
+  },
+  hi:{
+    'nav.home':'होम','nav.about':'हमारे बारे में','nav.products':'उत्पाद','nav.services':'सेवाएं','nav.contact':'संपर्क','nav.cta':'संपर्क करें',
+    'hero.eye':'अधिकृत COMES इटली भागीदार · भारत',
+    'hero.t1':'पत्थर','hero.t2':'पॉलिशिंग','hero.t3':'उत्कृष्टता',
+    'hero.sub':'COMES इटली के आधिकारिक भारतीय भागीदार — विश्वस्तरीय पॉलिशिंग हेड्स, असली स्पेयर पार्ट्स और पूरे देश में विशेषज्ञ सेवा।',
+    'hero.btn1':'उत्पाद देखें','hero.btn2':'सहायता पाएं',
+    's1n':'3+','s1l':'हेड मॉडल','s2n':'24/7','s2l':'आपातकालीन सहायता','s3n':'PAN','s3l':'भारत कवरेज',
+    'ab.lbl':'हमारे बारे में','ab.t1':'इतालवी','ab.t2':'नवाचार','ab.t3':'भारतीय उद्योग में',
+    'ab.p1':'COMES INDIA, COMES इटली का एकमात्र अधिकृत भागीदार है — पत्थर पॉलिशिंग मशीन हेड्स में वैश्विक नेता।',
+    'ab.p2':'हमारी इंजीनियरिंग टीम COMES हेड यूनिट के लिए 100% संगतता, स्थायित्व और प्रदर्शन सुनिश्चित करती है।',
+    'ab.f1t':'मूल मशीनरी','ab.f1d':'प्रामाणिक COMES इटली हेड्स — वैश्विक गुणवत्ता मानकों के साथ।',
+    'ab.f2t':'प्रमाणित स्पेयर पार्ट्स','ab.f2d':'सील, गियर, रिंग — 100% मूल, परीक्षित।',
+    'ab.f3t':'विशेषज्ञ रखरखाव','ab.f3d':'निवारक देखभाल से पूर्ण ओवरहॉल तक।',
+    'ab.f4t':'पूर्ण सेवा','ab.f4d':'परामर्श से स्थापना तक — पूरे भारत में।',
+    'pr.lbl':'हमारे हेड्स','pr.t1':'CO.ME.S इटली','pr.t2':'आयातित श्रृंखला','pr.all':'सभी उत्पाद देखें',
+    'pr.tag':'पॉलिशिंग हेड','pr.det':'विवरण देखें','pr.wa':'व्हाट्सएप पूछताछ','pr.now':'व्हाट्सएप पर पूछें',
+    'pr.spec':'तकनीकी विशेषताएं','pr.feat':'मुख्य विशेषताएं','pr.app':'अनुप्रयोग','pr.back':'← वापस',
+    'sv.lbl':'हमारी सेवाएं','sv.t1':'विश्वसनीय औद्योगिक','sv.t2':'समाधान',
+    'pc.lbl':'हम कैसे काम करते हैं','pc.t1':'हमारी व्यावसायिक','pc.t2':'कार्य प्रक्रिया',
+    'fq.lbl':'सामान्य प्रश्न','fq.t1':'सामान्य','fq.t2':'प्रश्न',
+    'ct.lbl':'संपर्क करें','ct.t1':'पत्थर पॉलिशिंग के बारे में','ct.t2':'बात करें',
+    'ct.addr':'H-163, विनायक सिटी, RIICO औद्योगिक क्षेत्र, जयपुर – राजस्थान 302041',
+    'ct.hrs':'सोमवार – शनिवार, सुबह 10:00 – शाम 6:00',
+    'ct.fn':'आपका नाम','ct.fp':'पूरा नाम','ct.fc':'फोन / ईमेल','ct.fcp':'+91 या ईमेल',
+    'ct.fm':'मशीन मॉडल','ct.fmp':'जैसे HTS6-V12','ct.fmsg':'संदेश','ct.fmsgp':'अपनी आवश्यकता बताएं…',
+    'ct.sub':'संदेश भेजें →','ct.ok':'धन्यवाद! हम जल्द संपर्क करेंगे।',
+    'ft.desc':'पत्थर पॉलिशिंग के लिए COMES इटली का अधिकृत भागीदार।',
+    'ft.ql':'त्वरित लिंक','ft.pr':'उत्पाद','ft.copy':'© 2025 COMES Machine India Pvt. Ltd. सर्वाधिकार सुरक्षित।',
+  },
+  ta:{
+    'nav.home':'முகப்பு','nav.about':'எங்களை பற்றி','nav.products':'தயாரிப்புகள்','nav.services':'சேவைகள்','nav.contact':'தொடர்பு','nav.cta':'தொடர்பு கொள்ளுங்கள்',
+    'hero.eye':'அங்கீகரிக்கப்பட்ட COMES இத்தாலி பங்காளி · இந்தியா',
+    'hero.t1':'கல்','hero.t2':'மெருகூட்டல்','hero.t3':'சிறப்பு',
+    'hero.sub':'COMES இத்தாலியின் அதிகாரப்பூர்வ இந்திய பங்காளி — உலகத்தரமான மெருகூட்டல் தலைகள் மற்றும் நிபுணர் சேவை.',
+    'hero.btn1':'தயாரிப்புகளை காண்க','hero.btn2':'உதவி பெறுக',
+    's1n':'3+','s1l':'தலை மாதிரிகள்','s2n':'24/7','s2l':'அவசர ஆதரவு','s3n':'PAN','s3l':'இந்தியா கவரேஜ்',
+    'ab.lbl':'எங்களை பற்றி','ab.t1':'இத்தாலிய','ab.t2':'கண்டுபிடிப்பு','ab.t3':'இந்திய தொழிலில்',
+    'ab.p1':'COMES INDIA, COMES இத்தாலியின் ஒரே அங்கீகரிக்கப்பட்ட பங்காளியாகும்.','ab.p2':'எங்கள் பொறியியல் குழு 100% இணக்கத்தன்மை மற்றும் செயல்திறனை உறுதி செய்கிறது.',
+    'ab.f1t':'அசல் இயந்திரங்கள்','ab.f1d':'உண்மையான COMES இத்தாலி தலைகள்.',
+    'ab.f2t':'சான்றளிக்கப்பட்ட பாகங்கள்','ab.f2d':'100% அசல் உதிரி பாகங்கள்.',
+    'ab.f3t':'நிபுணர் பராமரிப்பு','ab.f3d':'தடுப்பு பராமரிப்பு முதல் ஓவர்ஹால் வரை.',
+    'ab.f4t':'முழுமையான ஆதரவு','ab.f4d':'நாடு முழுவதும் சேவை.',
+    'pr.lbl':'எங்கள் தலைகள்','pr.t1':'CO.ME.S இத்தாலி','pr.t2':'இறக்குமதி வரிசை','pr.all':'அனைத்தையும் காண்க',
+    'pr.tag':'மெருகூட்டல் தலை','pr.det':'விவரங்களை காண்க','pr.wa':'WhatsApp விசாரணை','pr.now':'WhatsApp-ல் விசாரிக்கவும்',
+    'pr.spec':'தொழில்நுட்ப விவரக்குறிப்புகள்','pr.feat':'முக்கிய அம்சங்கள்','pr.app':'பயன்பாடுகள்','pr.back':'← திரும்பு',
+    'sv.lbl':'சேவைகள்','sv.t1':'நம்பகமான','sv.t2':'தீர்வுகள்',
+    'pc.lbl':'செயல்முறை','pc.t1':'வணிக','pc.t2':'செயல்முறை',
+    'fq.lbl':'கேள்விகள்','fq.t1':'பொதுவான','fq.t2':'கேள்விகள்',
+    'ct.lbl':'தொடர்பு','ct.t1':'பாலிஷிங் தீர்வுகள்','ct.t2':'பற்றி பேசலாம்',
+    'ct.addr':'H-163, வினாயக் சிட்டி, ஜெய்ப்பூர் – ராஜஸ்தான் 302041',
+    'ct.hrs':'திங்கள் – சனி, 10:00 AM – 6:00 PM',
+    'ct.fn':'பெயர்','ct.fp':'முழு பெயர்','ct.fc':'தொலைபேசி / மின்னஞ்சல்','ct.fcp':'+91',
+    'ct.fm':'மாதிரி','ct.fmp':'HTS6-V12','ct.fmsg':'செய்தி','ct.fmsgp':'விவரிக்கவும்…',
+    'ct.sub':'அனுப்பு →','ct.ok':'நன்றி! விரைவில் தொடர்பு கொள்கிறோம்.',
+    'ft.desc':'COMES இத்தாலியின் அங்கீகரிக்கப்பட்ட பங்காளி.',
+    'ft.ql':'இணைப்புகள்','ft.pr':'தயாரிப்புகள்','ft.copy':'© 2025 COMES Machine India Pvt. Ltd.',
+  },
+  mr:{
+    'nav.home':'मुख्यपृष्ठ','nav.about':'आमच्याबद्दल','nav.products':'उत्पादने','nav.services':'सेवा','nav.contact':'संपर्क','nav.cta':'संपर्क करा',
+    'hero.eye':'अधिकृत COMES इटली भागीदार · भारत',
+    'hero.t1':'दगड','hero.t2':'पॉलिशिंग','hero.t3':'उत्कृष्टता',
+    'hero.sub':'COMES इटलीचे अधिकृत भारतीय भागीदार — जागतिक दर्जाचे पॉलिशिंग हेड्स आणि तज्ञ सेवा.',
+    'hero.btn1':'उत्पादने पहा','hero.btn2':'मदत मिळवा',
+    's1n':'3+','s1l':'हेड मॉडेल्स','s2n':'24/7','s2l':'आणीबाणी सहाय्य','s3n':'PAN','s3l':'भारत कव्हरेज',
+    'ab.lbl':'आमच्याबद्दल','ab.t1':'इटालियन','ab.t2':'नवकल्पना','ab.t3':'भारतीय उद्योगात',
+    'ab.p1':'COMES INDIA हे COMES इटलीचे एकमेव अधिकृत भागीदार आहे.','ab.p2':'आमची टीम 100% सुसंगतता आणि कार्यक्षमता सुनिश्चित करते.',
+    'ab.f1t':'मूळ यंत्रसामग्री','ab.f1d':'प्रामाणिक COMES इटली हेड्स.',
+    'ab.f2t':'प्रमाणित स्पेअर पार्ट्स','ab.f2d':'100% मूळ भाग.',
+    'ab.f3t':'तज्ञ देखभाल','ab.f3d':'प्रतिबंधात्मक काळजी ते ओव्हरहॉल.',
+    'ab.f4t':'संपूर्ण सेवा','ab.f4d':'देशभरात एंड-टू-एंड कव्हरेज.',
+    'pr.lbl':'आमचे हेड्स','pr.t1':'CO.ME.S इटली','pr.t2':'आयात श्रेणी','pr.all':'सर्व उत्पादने',
+    'pr.tag':'पॉलिशिंग हेड','pr.det':'तपशील पहा','pr.wa':'WhatsApp चौकशी','pr.now':'WhatsApp वर चौकशी',
+    'pr.spec':'तांत्रिक वैशिष्ट्ये','pr.feat':'मुख्य वैशिष्ट्ये','pr.app':'अनुप्रयोग','pr.back':'← परत',
+    'sv.lbl':'सेवा','sv.t1':'विश्वसनीय','sv.t2':'उपाय',
+    'pc.lbl':'कार्यपद्धती','pc.t1':'व्यावसायिक','pc.t2':'कार्य प्रक्रिया',
+    'fq.lbl':'FAQ','fq.t1':'सामान्य','fq.t2':'प्रश्न',
+    'ct.lbl':'संपर्क','ct.t1':'पॉलिशिंग उपायांबद्दल','ct.t2':'बोलूया',
+    'ct.addr':'H-163, विनायक सिटी, जयपूर – राजस्थान 302041',
+    'ct.hrs':'सोमवार – शनिवार, 10:00 AM – 6:00 PM',
+    'ct.fn':'नाव','ct.fp':'पूर्ण नाव','ct.fc':'फोन / ईमेल','ct.fcp':'+91',
+    'ct.fm':'मशीन मॉडेल','ct.fmp':'HTS6-V12','ct.fmsg':'संदेश','ct.fmsgp':'वर्णन करा…',
+    'ct.sub':'पाठवा →','ct.ok':'धन्यवाद! आम्ही लवकरच संपर्क करू.',
+    'ft.desc':'COMES इटलीचा अधिकृत भागीदार.',
+    'ft.ql':'त्वरित दुवे','ft.pr':'उत्पादने','ft.copy':'© 2025 COMES Machine India Pvt. Ltd.',
+  },
+  te:{
+    'nav.home':'హోమ్','nav.about':'మా గురించి','nav.products':'ఉత్పత్తులు','nav.services':'సేవలు','nav.contact':'సంప్రదింపు','nav.cta':'సంప్రదించండి',
+    'hero.eye':'అధికారిక COMES ఇటలీ భాగస్వామి · భారతదేశం',
+    'hero.t1':'రాయి','hero.t2':'పాలిషింగ్','hero.t3':'శ్రేష్ఠత',
+    'hero.sub':'COMES ఇటలీ యొక్క అధికారిక భారత భాగస్వామి — ప్రపంచ స్థాయి పాలిషింగ్ హెడ్స్ మరియు నిపుణుల సేవ.',
+    'hero.btn1':'ఉత్పత్తులు చూడండి','hero.btn2':'సహాయం పొందండి',
+    's1n':'3+','s1l':'హెడ్ మోడల్స్','s2n':'24/7','s2l':'అత్యవసర సహాయం','s3n':'PAN','s3l':'భారత కవరేజ్',
+    'ab.lbl':'మా గురించి','ab.t1':'ఇటాలియన్','ab.t2':'నవ్యత','ab.t3':'భారత పరిశ్రమలో',
+    'ab.p1':'COMES INDIA అనేది COMES ఇటలీ యొక్క ఏకైక అధికారిక భాగస్వామి.','ab.p2':'మా టీం 100% అనుకూలత మరియు పనితీరును నిర్ధారిస్తుంది.',
+    'ab.f1t':'అసలైన యంత్రాలు','ab.f1d':'నిజమైన COMES ఇటలీ హెడ్స్.',
+    'ab.f2t':'ధృవీకరించిన పార్ట్స్','ab.f2d':'100% అసలైన స్పేర్ పార్ట్స్.',
+    'ab.f3t':'నిపుణుల నిర్వహణ','ab.f3d':'నిరోధక సంరక్షణ నుండి ఓవర్‌హాల్ వరకు.',
+    'ab.f4t':'పూర్తి మద్దతు','ab.f4d':'దేశవ్యాప్తంగా సేవ.',
+    'pr.lbl':'మా హెడ్స్','pr.t1':'CO.ME.S ఇటలీ','pr.t2':'దిగుమతి శ్రేణి','pr.all':'అన్నీ చూడండి',
+    'pr.tag':'పాలిషింగ్ హెడ్','pr.det':'వివరాలు','pr.wa':'WhatsApp విచారణ','pr.now':'WhatsApp లో విచారించండి',
+    'pr.spec':'సాంకేతిక వివరణలు','pr.feat':'ముఖ్య లక్షణాలు','pr.app':'అప్లికేషన్లు','pr.back':'← తిరిగి',
+    'sv.lbl':'సేవలు','sv.t1':'నమ్మదగిన','sv.t2':'పరిష్కారాలు',
+    'pc.lbl':'పని విధానం','pc.t1':'వ్యాపార','pc.t2':'పని విధానం',
+    'fq.lbl':'ప్రశ్నలు','fq.t1':'సాధారణ','fq.t2':'ప్రశ్నలు',
+    'ct.lbl':'సంప్రదించండి','ct.t1':'పాలిషింగ్ పరిష్కారాల','ct.t2':'గురించి మాట్లాడుదాం',
+    'ct.addr':'H-163, వినాయక్ సిటీ, జైపూర్ – రాజస్థాన్ 302041',
+    'ct.hrs':'సోమవారం – శనివారం, 10:00 AM – 6:00 PM',
+    'ct.fn':'పేరు','ct.fp':'పూర్తి పేరు','ct.fc':'ఫోన్/ఇమెయిల్','ct.fcp':'+91',
+    'ct.fm':'మోడల్','ct.fmp':'HTS6-V12','ct.fmsg':'సందేశం','ct.fmsgp':'వివరించండి…',
+    'ct.sub':'పంపండి →','ct.ok':'ధన్యవాదాలు! త్వరలో సంప్రదిస్తాము.',
+    'ft.desc':'COMES ఇటలీ యొక్క అధికారిక భారత భాగస్వామి.',
+    'ft.ql':'లింక్స్','ft.pr':'ఉత్పత్తులు','ft.copy':'© 2025 COMES Machine India Pvt. Ltd.',
+  },
+};
+const LANGS = [{c:'en',n:'English'},{c:'hi',n:'हिंदी'},{c:'ta',n:'தமிழ்'},{c:'mr',n:'मराठी'},{c:'te',n:'తెలుగు'}];
+
+// ── WA ────────────────────────────────────────────────────────
+const WA_NUM = '918306665561';
+const WA_GEN = 'Hello COMES India! I would like to know more about your products and services.';
+function openWA(msg){ window.open('https://wa.me/'+WA_NUM+'?text='+encodeURIComponent(msg),'_blank','noopener,noreferrer'); }
+
+// ── WA SVG ICON ───────────────────────────────────────────────
+function WAIcon({size=22}){
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  );
+}
+
+// ── DATA ──────────────────────────────────────────────────────
+const PRODUCTS = [
+  { id:'1', slug:'hts-6-v14', name:'HTS-6 V14', tagline:'High Torque Spindle — Generation 14',
+    desc:'The HTS-6 V14 is the flagship polishing head from COMES Italy, engineered for maximum torque output and superior surface finishing on marble, granite, and engineered stone. Its 14th generation design incorporates advanced sealing technology, reduced vibration, and extended maintenance cycles.',
+    img:'https://comesindia.com/wp-content/uploads/2025/09/2.png',
+    gallery:['https://comesindia.com/wp-content/uploads/2025/09/2.png','https://comesindia.com/wp-content/uploads/2026/02/WhatsApp-Image-2026-02-03-at-9.07.48-AM.jpeg','https://comesindia.com/wp-content/uploads/2026/02/Comes-india-Banners-1920-x-800-px.jpg'],
+    specs:[{l:'Model',v:'HTS-6 V14'},{l:'Generation',v:'14th Gen'},{l:'Head Type',v:'High Torque Spindle'},{l:'Motor Power',v:'Up to 5.5 kW'},{l:'RPM Range',v:'200 – 1800 RPM'},{l:'Spindle Count',v:'6'},{l:'Stone Type',v:'Marble, Granite, Engineered Stone'},{l:'Origin',v:'COMES Italy (Imported)'}],
+    feats:['Advanced 14th generation sealing technology','Reduced vibration for superior finish quality','Extended maintenance-free operating cycles','Compatible with all standard polishing abrasives','Quick-change spindle system for minimal downtime','Precision-balanced housing for smooth operation'],
+    apps:['Marble slab polishing lines','Granite surface finishing','Engineered quartz processing','Calibration and honing operations','Edge polishing and profiling'],
+    waMsg:'Hello COMES India, I am interested in the *HTS-6 V14* polishing head. Please share details, pricing and availability.' },
+  { id:'2', slug:'rg6', name:'RG6', tagline:'Rigid Gear Head — Professional Series',
+    desc:'The RG6 delivers consistent polishing performance with a robust rigid gear mechanism. Designed for heavy-duty continuous operation, it excels in high-volume stone processing environments where reliability and consistent pressure distribution are critical.',
+    img:'https://comesindia.com/wp-content/uploads/2025/09/1.png',
+    gallery:['https://comesindia.com/wp-content/uploads/2025/09/1.png','https://comesindia.com/wp-content/uploads/2026/02/WhatsApp-Image-2026-02-03-at-9.07.48-AM.jpeg','https://comesindia.com/wp-content/uploads/2026/02/Comes-india-Banners-1920-x-800-px.jpg'],
+    specs:[{l:'Model',v:'RG6'},{l:'Series',v:'Professional'},{l:'Head Type',v:'Rigid Gear'},{l:'Motor Power',v:'Up to 4.5 kW'},{l:'RPM Range',v:'150 – 1600 RPM'},{l:'Spindle Count',v:'6'},{l:'Stone Type',v:'Marble, Limestone, Travertine'},{l:'Origin',v:'COMES Italy (Imported)'}],
+    feats:['Robust rigid gear mechanism for consistent pressure','Heavy-duty design for 24-hour continuous operation','Precision gear alignment for even abrasive wear','High heat-resistance for demanding environments','Modular construction for field-level maintenance','Wide range of compatible abrasive grades'],
+    apps:['High-volume marble processing lines','Limestone and travertine polishing','Industrial-scale stone finishing','Multi-head bridge saw integration','Automated production line systems'],
+    waMsg:'Hello COMES India, I am interested in the *RG6* polishing head. Please share details, pricing and availability.' },
+  { id:'3', slug:'storm5-v14', name:'STORM5 V14', tagline:'Storm 5 Spindle — Generation 14',
+    desc:'The STORM5 V14 features 5 independently oscillating spindles that adapt to surface variations in real time, delivering unparalleled finish consistency across uneven or textured stone surfaces and setting a new benchmark for premium stone processing.',
+    img:'https://comesindia.com/wp-content/uploads/2025/09/3.png',
+    gallery:['https://comesindia.com/wp-content/uploads/2025/09/3.png','https://comesindia.com/wp-content/uploads/2026/02/WhatsApp-Image-2026-02-03-at-9.07.48-AM.jpeg','https://comesindia.com/wp-content/uploads/2026/02/Comes-india-Banners-1920-x-800-px.jpg'],
+    specs:[{l:'Model',v:'STORM5 V14'},{l:'Generation',v:'14th Gen'},{l:'Head Type',v:'Independent Oscillating'},{l:'Motor Power',v:'Up to 6.0 kW'},{l:'RPM Range',v:'200 – 2000 RPM'},{l:'Spindle Count',v:'5 (independent)'},{l:'Stone Type',v:'All Stone Types'},{l:'Origin',v:'COMES Italy (Imported)'}],
+    feats:['5 independently oscillating spindles','Real-time surface tracking for consistent pressure','Lowest vibration transmission in its class','Ideal for irregular and textured surfaces','Advanced water distribution system','High-gloss mirror finish capability'],
+    apps:['Textured and brushed stone surfaces','Natural stone with surface variation','Premium marble with delicate veining','Antique finish production','High-gloss mirror finish processing'],
+    waMsg:'Hello COMES India, I am interested in the *STORM5 V14* polishing head. Please share details, pricing and availability.' },
+];
+const SERVICES = [
+  {id:'s1',num:'01',title:'Professional On-Site Installation',desc:'Safe, precise machine setup across India. COMES-certified technicians handle full alignment, calibration, and performance testing.',img:'https://comesindia.com/wp-content/uploads/2025/07/istockphoto-2162099414-612x612-1.jpg',bullets:['COMES-Certified Technicians','New Installations & Retrofits','Full Operational Testing']},
+  {id:'s2',num:'02',title:'Original Spare Parts',desc:'100% genuine COMES Italy parts — gears, holders, rings, bearings, seals — stocked in India for 24–48 hr dispatch.',img:'https://comesindia.com/wp-content/uploads/2025/07/images-4.jpeg',bullets:['Ready-to-Ship Inventory','Verified Fitment Support','Gears, Holders, Rings, Seals']},
+  {id:'s3',num:'03',title:'Emergency Breakdown Repairs',desc:'24×7 rapid response. Mobile repair teams with parts and tools to minimise costly downtime.',img:'https://comesindia.com/wp-content/uploads/2025/07/inspection-reporting-system-scal-1-1024x683.jpg',bullets:['24/7 Technical Hotline','Mobile Repair Vans','Quick Fault Diagnosis']},
+  {id:'s4',num:'04',title:'Expert Troubleshooting',desc:'Deep mechanical and electrical issue mapping, load-pressure-rotation testing, and detailed diagnostic reporting.',img:'https://comesindia.com/wp-content/uploads/2025/07/images-5.jpeg',bullets:['Mechanical & Electrical Mapping','Load & Pressure Testing','Detailed Diagnostic Reports']},
+  {id:'s5',num:'05',title:'Calibration & Testing',desc:'On-site calibration for head pressure, speed, alignment, and vibration — optimised per stone type and machine model.',img:'https://comesindia.com/wp-content/uploads/2025/07/images-7.jpeg',bullets:['Pressure & Torque Adjustments','Performance Benchmarking','Post-Calibration Certification']},
+  {id:'s6',num:'06',title:'Remote Video Assistance',desc:'Instant live visual guidance in Hindi or English. Our team walks operators through repairs step-by-step, remotely.',img:'https://comesindia.com/wp-content/uploads/2025/07/images-6.jpeg',bullets:['Step-by-Step Visual Support','Hindi/English Available','Works with Mobile or CCTV']},
+];
+const PROCESS = [
+  {num:'01',title:'Requirement Analysis',items:['On-site condition check','Technical documentation','Spare / upgrade suggestions']},
+  {num:'02',title:'Installation & Setup',items:['Head installation','Seal & ring assembly','Retrofit to existing lines']},
+  {num:'03',title:'Spare Part Replacement',items:['Fast from Indian warehouse','On-site / guided fitting','Alignment check']},
+  {num:'04',title:'Preventive Maintenance',items:['Greasing & cleaning','Motor & pressure tuning','Wear & tear control']},
+  {num:'05',title:'Calibration & Testing',items:['Digital calibration tools','Polishing output validation','Performance certification']},
+];
+const FAQS = [
+  {q:'How do I know which COMES spare part is right for my machine?',a:"Share your machine model (e.g., HTS6-V12, STORM5) and the issue. Our technical team will identify the exact part using our compatibility database and service history."},
+  {q:'Do you offer installation support across all of India?',a:'Yes. We provide on-site installation services PAN India through our certified engineers, including setup, alignment, and complete performance testing.'},
+  {q:'How fast can I get a spare part delivered?',a:'We stock most critical parts — seals, gears, holders — in India. Orders are dispatched within 24–48 hours depending on your location.'},
+  {q:"What if I need urgent support but can't get an engineer on-site?",a:'We offer Remote Video Assistance where our technicians guide your staff through live video troubleshooting until the issue is resolved or a visit is scheduled.'},
+  {q:'Are all spare parts original COMES Italy certified?',a:'Yes. Every part we supply is 100% original COMES Italy — tested for compatibility, durability, and long life. We never use third-party substitutes.'},
+];
+
+// ── CONTEXT ───────────────────────────────────────────────────
+const AppCtx = createContext(null);
+function AppProvider({children}){
+  const [lang,setLangS] = useState(()=>localStorage.getItem('comes_lang')||'en');
+  const setLang = useCallback(l=>{setLangS(l);localStorage.setItem('comes_lang',l);},[]);
+  const t = useCallback(k=>(T[lang]||T.en)[k]||(T.en[k]||k),[lang]);
+  return <AppCtx.Provider value={{lang,setLang,t}}>{children}</AppCtx.Provider>;
+}
+function useApp(){return useContext(AppCtx);}
+
+const RouterCtx = createContext(null);
+function RouterProvider({children}){
+  const [page,setPage] = useState({name:'home',params:{}});
+  const nav = useCallback((name,params={})=>{setPage({name,params});window.scrollTo(0,0);},[]);
+  return <RouterCtx.Provider value={{page,nav}}>{children}</RouterCtx.Provider>;
+}
+function useNav(){return useContext(RouterCtx);}
+
+// ── LANG SWITCHER ─────────────────────────────────────────────
+function LangSwitcher(){
+  const {lang,setLang}=useApp();
+  const [open,setOpen]=useState(false);
+  const ref=useRef(null);
+  const cur=LANGS.find(l=>l.c===lang);
+  useEffect(()=>{
+    const h=e=>{if(ref.current&&!ref.current.contains(e.target))setOpen(false);};
+    document.addEventListener('mousedown',h);
+    return()=>document.removeEventListener('mousedown',h);
+  },[]);
+  return (
+    <div ref={ref} style={{position:'relative'}}>
+      <button className="lang-btn" onClick={()=>setOpen(o=>!o)}>
+        🌐 {cur.n} <span style={{opacity:.5,fontSize:'.55rem'}}>{open?'▲':'▼'}</span>
+      </button>
+      {open&&(
+        <div className="lang-menu">
+          {LANGS.map(opt=>(
+            <button key={opt.c} className={`lang-item${lang===opt.c?' selected':''}`}
+              onClick={()=>{setLang(opt.c);setOpen(false);}}>
+              <span>{opt.n}</span>
+              <span style={{fontFamily:'var(--font-mono)',fontSize:'.58rem',opacity:.4}}>{opt.c.toUpperCase()}</span>
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ── NAVBAR ────────────────────────────────────────────────────
+function Navbar(){
+  const {t}=useApp();
+  const {page,nav}=useNav();
+  const [mob,setMob]=useState(false);
+  const links=[
+    {k:'nav.home',p:'home'},
+    {k:'nav.about',p:'home',a:'about'},
+    {k:'nav.products',p:'products'},
+    {k:'nav.services',p:'home',a:'services'},
+    {k:'nav.contact',p:'home',a:'contact'},
+  ];
+  const go=(p,a)=>{nav(p);setMob(false);if(a)setTimeout(()=>document.getElementById(a)?.scrollIntoView({behavior:'smooth'}),80);};
+  return (
+    <>
+      <nav className="nav">
+        <div className="nav-inner">
+          <img src={window.LOGO_URI} alt="COMES India" onClick={()=>nav('home')}
+            style={{height:48,width:'auto',objectFit:'contain',cursor:'pointer'}} />
+          <ul className="nav-links">
+            {links.map(l=>(
+              <li key={l.k}>
+                <button className={`nav-link${page.name===l.p&&!l.a?' active':''}`} onClick={()=>go(l.p,l.a)}>{t(l.k)}</button>
+              </li>
+            ))}
+          </ul>
+          <div className="nav-right">
+            <LangSwitcher/>
+            <button className="btn-red" style={{padding:'.5rem 1.3rem',fontSize:'.75rem'}} onClick={()=>go('home','contact')}>{t('nav.cta')}</button>
+            <button className="hamburger" onClick={()=>setMob(o=>!o)} aria-label="Menu">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--black)" strokeWidth="2">
+                {mob?<><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></>:<><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></>}
+              </svg>
+            </button>
+          </div>
+        </div>
+      </nav>
+      {mob&&(
+        <div style={{position:'fixed',top:'var(--nav-h)',left:0,right:0,background:'var(--white)',zIndex:99,borderBottom:'1px solid var(--border)',padding:'1.5rem',boxShadow:'var(--shadow-md)',display:'flex',flexDirection:'column',gap:'.8rem'}}>
+          {links.map(l=>(
+            <button key={l.k} className="nav-link" style={{textAlign:'left',fontSize:'.95rem',padding:'.5rem 0'}} onClick={()=>go(l.p,l.a)}>{t(l.k)}</button>
+          ))}
+          <div style={{paddingTop:'.5rem'}}><LangSwitcher/></div>
+        </div>
+      )}
+    </>
+  );
+}
+
+// ── FOOTER ────────────────────────────────────────────────────
+function Footer(){
+  const {t}=useApp();
+  const {nav}=useNav();
+  return (
+    <footer className="footer">
+      <div className="container">
+        <div className="footer-grid">
+          <div>
+            <div style={{display:'inline-block',background:'#fff',borderRadius:6,padding:'6px 12px',marginBottom:'.2rem'}}>
+              <img src={window.LOGO_URI} alt="COMES India" style={{height:44,width:'auto',objectFit:'contain',display:'block'}}/>
+            </div>
+            <p className="footer-desc">{t('ft.desc')}</p>
+            <button className="btn-wa" onClick={()=>openWA(WA_GEN)}><WAIcon size={18}/> WhatsApp Us</button>
+          </div>
+          <div>
+            <div className="footer-h">{t('ft.ql')}</div>
+            {[['nav.home','home'],['nav.about','home'],['nav.products','products'],['nav.services','home'],['nav.contact','home']].map(([k,p])=>(
+              <button key={k} className="footer-link" onClick={()=>nav(p)}>{t(k)}</button>
+            ))}
+          </div>
+          <div>
+            <div className="footer-h">{t('ft.pr')}</div>
+            {PRODUCTS.map(p=>(
+              <button key={p.id} className="footer-link" onClick={()=>nav('product',{slug:p.slug})}>{p.name}</button>
+            ))}
+            <div style={{marginTop:'1.5rem',color:'#555',fontSize:'.82rem',lineHeight:1.8}}>
+              <div style={{color:'var(--red)',fontFamily:'var(--font-mono)',fontSize:'.58rem',letterSpacing:'.22em',marginBottom:'.4rem'}}>CONTACT</div>
+              <div>+91-83066 65561</div><div>info@comesindia.com</div>
+              <div style={{marginTop:'.3rem',fontSize:'.76rem',opacity:.7}}>Mon–Sat 10AM–6PM</div>
+            </div>
+          </div>
+        </div>
+        <div className="footer-bottom">
+          <span>{t('ft.copy')}</span>
+          <span>JAIPUR, RAJASTHAN, INDIA</span>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+// ── SECTION HEADER ────────────────────────────────────────────
+function SH({label,title,sub}){
+  return (
+    <div style={{marginBottom:'2.5rem'}}>
+      <div className="label-tag">{label}</div>
+      <h2 className="section-title">{title}</h2>
+      {sub&&<p style={{color:'var(--muted)',maxWidth:520,fontSize:'1rem',lineHeight:1.7}}>{sub}</p>}
+    </div>
+  );
+}
+
+// ── HERO ──────────────────────────────────────────────────────
+function Hero(){
+  const {t}=useApp();
+  const {nav}=useNav();
+  const TICK=Array(8).fill('COMES INDIA · AUTHORISED COMES ITALY PARTNER · STONE POLISHING HEADS · PAN INDIA SERVICE · ORIGINAL SPARE PARTS ·');
+  return (
+    <>
+      <section className="hero" style={{paddingTop:'var(--nav-h)'}}>
+        <div className="hero-left">
+          <div className="hero-eyebrow">{t('hero.eye')}</div>
+          <h1 className="hero-h1">{t('hero.t1')}<br/><span>{t('hero.t2')}</span><br/>{t('hero.t3')}</h1>
+          <p className="hero-sub">{t('hero.sub')}</p>
+          <div className="hero-btns">
+            <button className="btn-red" onClick={()=>nav('products')}>{t('hero.btn1')}</button>
+            <button className="btn-outline" onClick={()=>{nav('home');setTimeout(()=>document.getElementById('contact')?.scrollIntoView({behavior:'smooth'}),80);}}>{t('hero.btn2')}</button>
+          </div>
+          <div className="hero-stats">
+            {[['s1n','s1l'],['s2n','s2l'],['s3n','s3l']].map(([n,l])=>(
+              <div key={l}><div className="stat-n">{t(n)}</div><div className="stat-l">{t(l)}</div></div>
+            ))}
+          </div>
+        </div>
+        <div className="hero-right">
+          <img src="https://comesindia.com/wp-content/uploads/2026/02/Comes-india-Banners-1920-x-800-px.jpg" alt="COMES India Polishing Machinery"/>
+          <div className="hero-badge">
+            <div className="hero-badge-n">100%</div>
+            <div className="hero-badge-t">ORIGINAL<br/>COMES ITALY</div>
+          </div>
+        </div>
+      </section>
+      <div className="ticker-bar">
+        <div className="ticker-track">{TICK.map((tx,i)=><span key={i}>{tx}</span>)}</div>
+      </div>
+    </>
+  );
+}
+
+// ── ABOUT ─────────────────────────────────────────────────────
+function About(){
+  const {t}=useApp();
+  const feats=[
+    {icon:'⚙️',tk:'ab.f1t',dk:'ab.f1d'},{icon:'🔩',tk:'ab.f2t',dk:'ab.f2d'},
+    {icon:'🛠️',tk:'ab.f3t',dk:'ab.f3d'},{icon:'📡',tk:'ab.f4t',dk:'ab.f4d'},
+  ];
+  return (
+    <section id="about" className="section-pad">
+      <div className="container">
+        <div className="about-grid">
+          <div className="about-img-wrap">
+            <img src="https://comesindia.com/wp-content/uploads/2026/02/WhatsApp-Image-2026-02-03-at-9.07.48-AM.jpeg" alt="COMES India Workshop"/>
+            <div className="about-badge">
+              <div className="about-badge-n">100%</div>
+              <div className="about-badge-t">ORIGINAL<br/>COMES ITALY</div>
+            </div>
+          </div>
+          <div>
+            <SH label={t('ab.lbl')} title={<>{t('ab.t1')} <span>{t('ab.t2')}</span><br/>{t('ab.t3')}</>}/>
+            <p className="about-p">{t('ab.p1')}</p>
+            <p className="about-p">{t('ab.p2')}</p>
+            <div className="feat-grid">
+              {feats.map(f=>(
+                <div key={f.tk} className="feat-card">
+                  <div style={{fontSize:'1.5rem'}}>{f.icon}</div>
+                  <h4>{t(f.tk)}</h4>
+                  <p>{t(f.dk)}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ── PRODUCT CARD ──────────────────────────────────────────────
+function ProdCard({p}){
+  const {t}=useApp();
+  const {nav}=useNav();
+  return (
+    <div className="prod-card">
+      <div className="prod-img-wrap" onClick={()=>nav('product',{slug:p.slug})}>
+        <img className="prod-img" src={p.img} alt={p.name}/>
+      </div>
+      <div className="prod-info">
+        <div className="prod-tag">{t('pr.tag')}</div>
+        <div className="prod-name" onClick={()=>nav('product',{slug:p.slug})}>{p.name}</div>
+        <div className="prod-tagline">{p.tagline}</div>
+        <div className="prod-actions">
+          <button className="btn-outline" style={{padding:'.6rem .5rem',fontSize:'.72rem',width:'100%',justifyContent:'center'}} onClick={()=>nav('product',{slug:p.slug})}>{t('pr.det')}</button>
+          <button className="btn-wa" style={{padding:'.6rem .5rem',fontSize:'.72rem',width:'100%',justifyContent:'center'}} onClick={()=>openWA(p.waMsg)}><WAIcon size={15}/> {t('pr.wa')}</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ── PRODUCTS SECTION ──────────────────────────────────────────
+function ProductsSection(){
+  const {t}=useApp();
+  const {nav}=useNav();
+  return (
+    <section id="products" className="section-pad products-bg">
+      <div className="container">
+        <div style={{display:'flex',justifyContent:'space-between',alignItems:'flex-end',flexWrap:'wrap',gap:'1rem',marginBottom:'2.5rem'}}>
+          <SH label={t('pr.lbl')} title={<>{t('pr.t1')} <span>{t('pr.t2')}</span></>}/>
+          <button className="btn-outline" style={{marginBottom:'2.5rem'}} onClick={()=>nav('products')}>{t('pr.all')}</button>
+        </div>
+        <div className="prod-grid">
+          {PRODUCTS.map(p=><ProdCard key={p.id} p={p}/>)}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ── SERVICES ──────────────────────────────────────────────────
+function Services(){
+  const {t}=useApp();
+  return (
+    <>
+      <section id="services" className="section-pad">
+        <div className="container">
+          <SH label={t('sv.lbl')} title={<>{t('sv.t1')}<br/><span>{t('sv.t2')}</span></>}/>
+          <div className="svc-grid">
+            {SERVICES.map(s=>(
+              <div key={s.id} className="svc-card">
+                <div style={{overflow:'hidden'}}>
+                  <img className="svc-img" src={s.img} alt={s.title}/>
+                </div>
+                <div className="svc-body">
+                  <div className="svc-num">{s.num}</div>
+                  <h3>{s.title}</h3>
+                  <p style={{marginBottom:'.8rem'}}>{s.desc}</p>
+                  <ul style={{listStyle:'none'}}>
+                    {s.bullets.map(b=>(
+                      <li key={b} className="proc-li" style={{marginBottom:'.25rem'}}>{b}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section id="process" className="section-pad process-bg">
+        <div className="container">
+          <SH label={t('pc.lbl')} title={<>{t('pc.t1')}<br/><span>{t('pc.t2')}</span></>}/>
+          <div className="proc-grid">
+            {PROCESS.map((s,i)=>(
+              <div key={s.num} className="proc-step" style={{borderRight:i<PROCESS.length-1?'1px solid var(--border)':'none'}}>
+                <div className="proc-n">{s.num}</div>
+                <h4>{s.title}</h4>
+                {s.items.map(it=><div key={it} className="proc-li">{it}</div>)}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
+
+// ── FAQ ───────────────────────────────────────────────────────
+function Faq(){
+  const {t}=useApp();
+  const [open,setOpen]=useState(null);
+  return (
+    <section id="faq" className="section-pad">
+      <div className="container">
+        <SH label={t('fq.lbl')} title={<>{t('fq.t1')} <span>{t('fq.t2')}</span></>}/>
+        <div className="faq-wrap">
+          {FAQS.map((f,i)=>(
+            <div key={i} className="faq-item">
+              <button className={`faq-q${open===i?' open':''}`} onClick={()=>setOpen(open===i?null:i)}>
+                <span>{f.q}</span>
+                <span className={`faq-icon${open===i?' open':''}`}>+</span>
+              </button>
+              <div className={`faq-body${open===i?' open':''}`}>{f.a}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ── CONTACT ───────────────────────────────────────────────────
+function Contact(){
+  const {t}=useApp();
+  const [sent,setSent]=useState(false);
+  return (
+    <section id="contact" className="section-pad contact-bg">
+      <div className="container">
+        <SH label={t('ct.lbl')} title={<>{t('ct.t1')}<br/><span>{t('ct.t2')}</span></>}/>
+        <div className="contact-grid">
+          <div>
+            {[{icon:'📍',lbl:'Address',val:t('ct.addr')},{icon:'📞',lbl:'Phone',val:'+91-83066 65561 / +91 9929765563'},{icon:'✉️',lbl:'Email',val:'info@comesindia.com'},{icon:'🕐',lbl:'Hours',val:t('ct.hrs')}].map(item=>(
+              <div key={item.lbl} className="cinfo-item">
+                <span className="cinfo-icon">{item.icon}</span>
+                <div>
+                  <div className="cinfo-label">{item.lbl}</div>
+                  <div className="cinfo-val" style={{whiteSpace:'pre-line'}}>{item.val}</div>
+                </div>
+              </div>
+            ))}
+            <div style={{marginTop:'1.5rem'}}>
+              <button className="btn-wa" onClick={()=>openWA(WA_GEN)}><WAIcon size={18}/> Chat on WhatsApp</button>
+            </div>
+          </div>
+          <form onSubmit={e=>{e.preventDefault();setSent(true);}} style={{background:'var(--white)',padding:'2rem',borderRadius:'8px',boxShadow:'var(--shadow)'}}>
+            <div className="form-row">
+              <div className="form-group"><label className="form-label">{t('ct.fn')}</label><input className="form-input" placeholder={t('ct.fp')} required/></div>
+              <div className="form-group"><label className="form-label">{t('ct.fc')}</label><input className="form-input" placeholder={t('ct.fcp')} required/></div>
+            </div>
+            <div className="form-group"><label className="form-label">{t('ct.fm')}</label><input className="form-input" placeholder={t('ct.fmp')}/></div>
+            <div className="form-group"><label className="form-label">{t('ct.fmsg')}</label><textarea className="form-input" placeholder={t('ct.fmsgp')} required rows={4} style={{resize:'none'}}/></div>
+            <div style={{display:'flex',alignItems:'center',gap:'1rem',flexWrap:'wrap'}}>
+              <button type="submit" className="btn-red">{t('ct.sub')}</button>
+              {sent&&<span style={{fontFamily:'var(--font-mono)',fontSize:'.7rem',color:'#16a34a',letterSpacing:'.1em'}}>✓ {t('ct.ok')}</span>}
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ── HOME PAGE ─────────────────────────────────────────────────
+function Home(){
+  return (<><Hero/><About/><ProductsSection/><Services/><Faq/><Contact/></>);
+}
+
+// ── PRODUCTS PAGE ─────────────────────────────────────────────
+function ProductsPage(){
+  const {t}=useApp();
+  return (
+    <div style={{paddingTop:'var(--nav-h)',minHeight:'100vh',background:'var(--white)'}}>
+      <div style={{background:'var(--gray1)',borderBottom:'1px solid var(--border)',padding:'3rem 0'}}>
+        <div className="container">
+          <div className="label-tag">{t('pr.lbl')}</div>
+          <h1 className="section-title">{t('pr.t1')} <span>{t('pr.t2')}</span></h1>
+          <p style={{color:'var(--muted)',maxWidth:520,fontSize:'1rem',lineHeight:1.7}}>Every head is 100% original COMES Italy — imported and serviced by our certified engineers across India.</p>
+        </div>
+      </div>
+      <div className="container section-pad">
+        <div className="prod-grid">
+          {PRODUCTS.map(p=><ProdCard key={p.id} p={p}/>)}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ── PRODUCT DETAIL ────────────────────────────────────────────
+function ProductDetail({slug}){
+  const {t}=useApp();
+  const {nav}=useNav();
+  const p=PRODUCTS.find(x=>x.slug===slug);
+  const [img,setImg]=useState(0);
+  if(!p) return <div style={{textAlign:'center',padding:'8rem 2rem'}}><h2 style={{fontFamily:'var(--font-display)',fontSize:'3rem',color:'var(--red)'}}>Product Not Found</h2><button className="btn-red" style={{marginTop:'1.5rem'}} onClick={()=>nav('products')}>Browse All</button></div>;
+  const related=PRODUCTS.filter(x=>x.id!==p.id);
+  return (
+    <div style={{paddingTop:'var(--nav-h)',minHeight:'100vh',background:'var(--white)'}}>
+      <div className="breadcrumb">
+        <span className="bc-link" onClick={()=>nav('home')}>Home</span>
+        <span className="bc-sep">›</span>
+        <span className="bc-link" onClick={()=>nav('products')}>{t('nav.products')}</span>
+        <span className="bc-sep">›</span>
+        <span className="bc-cur">{p.name}</span>
+      </div>
+      <div className="container">
+        <div className="detail-grid">
+          <div>
+            <div className="gallery-main">
+              <img src={p.gallery[img]} alt={p.name}/>
+            </div>
+            <div className="thumb-row">
+              {p.gallery.map((g,i)=>(
+                <div key={i} className={`thumb${img===i?' active':''}`} onClick={()=>setImg(i)}>
+                  <img src={g} alt=""/>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div>
+            <div className="prod-tag" style={{marginBottom:'.6rem'}}>{t('pr.tag')}</div>
+            <h1 style={{fontFamily:'var(--font-display)',fontSize:'clamp(3rem,5vw,5rem)',lineHeight:.92,letterSpacing:'.02em',marginBottom:'.6rem'}}>{p.name}</h1>
+            <p style={{fontFamily:'var(--font-body)',fontWeight:600,fontSize:'.95rem',color:'var(--red)',letterSpacing:'.05em',marginBottom:'1.2rem'}}>{p.tagline}</p>
+            <p style={{color:'var(--muted)',lineHeight:1.8,fontSize:'.97rem',marginBottom:'2rem'}}>{p.desc}</p>
+            <div style={{background:'var(--gray1)',border:'1px solid var(--border)',borderRadius:'6px',padding:'1.5rem',marginBottom:'2rem'}}>
+              <div style={{fontFamily:'var(--font-mono)',fontSize:'.6rem',letterSpacing:'.2em',color:'var(--muted)',textTransform:'uppercase',marginBottom:'.5rem'}}>Ready to enquire?</div>
+              <p style={{color:'var(--black)',fontSize:'.9rem',lineHeight:1.5,marginBottom:'1rem'}}>Chat with our technical team on WhatsApp for pricing, availability, and requirements.</p>
+              <button className="btn-wa" onClick={()=>openWA(p.waMsg)}><WAIcon size={18}/> {t('pr.now')}</button>
+            </div>
+            <div className="label-tag" style={{marginBottom:'.8rem'}}>{t('pr.feat')}</div>
+            <ul style={{listStyle:'none',display:'flex',flexDirection:'column',gap:'.5rem',marginBottom:'1.5rem'}}>
+              {p.feats.map(f=>(
+                <li key={f} style={{display:'flex',alignItems:'flex-start',gap:'.7rem',color:'var(--muted)',fontSize:'.9rem',lineHeight:1.5}}>
+                  <span style={{color:'var(--red)',flexShrink:0,marginTop:'.1rem',fontWeight:700}}>✓</span>{f}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'1.5rem',marginBottom:'3rem'}}>
+          <div style={{background:'var(--gray1)',border:'1px solid var(--border)',borderRadius:'6px',padding:'2rem'}}>
+            <div className="label-tag" style={{marginBottom:'1.2rem'}}>{t('pr.spec')}</div>
+            <table className="spec-table">
+              <tbody>
+                {p.specs.map((s,i)=>(
+                  <tr key={s.l} className="spec-row" style={{borderBottom:i<p.specs.length-1?'1px solid var(--border)':'none'}}>
+                    <td className="spec-l">{s.l}</td>
+                    <td className="spec-v">{s.v}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <div style={{background:'var(--white)',border:'1px solid var(--border)',borderRadius:'6px',padding:'2rem'}}>
+            <div className="label-tag" style={{marginBottom:'1.2rem'}}>{t('pr.app')}</div>
+            {p.apps.map((a,i)=>(
+              <div key={a} className="app-item">
+                <span className="app-n">{String(i+1).padStart(2,'0')}</span>
+                <span style={{color:'var(--black)',fontSize:'.9rem',fontWeight:600}}>{a}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="cta-box">
+          <div>
+            <h3>Ready to upgrade your polishing line?</h3>
+            <p>Talk to our engineers on WhatsApp — fast response, every time.</p>
+          </div>
+          <button className="btn-wa" style={{background:'#fff',color:'#25D366',fontWeight:700}} onClick={()=>openWA(p.waMsg)}><WAIcon size={18}/> {t('pr.now')}</button>
+        </div>
+
+        {related.length>0&&(
+          <div style={{paddingBottom:'4rem'}}>
+            <div className="label-tag">Other Heads</div>
+            <h2 className="section-title" style={{marginBottom:'2rem'}}>You May Also <span>Consider</span></h2>
+            <div style={{display:'grid',gridTemplateColumns:'repeat(2,1fr)',gap:'1.5rem'}}>
+              {related.map(rp=><ProdCard key={rp.id} p={rp}/>)}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// ── APP ───────────────────────────────────────────────────────
+function AppContent(){
+  const {page}=useNav();
+  let content;
+  if(page.name==='home') content=<Home/>;
+  else if(page.name==='products') content=<ProductsPage/>;
+  else if(page.name==='product') content=<ProductDetail slug={page.params.slug}/>;
+  else content=<div style={{textAlign:'center',padding:'8rem 2rem'}}><h2 style={{color:'var(--red)',fontFamily:'var(--font-display)',fontSize:'3rem'}}>404</h2></div>;
+  return (
+    <>
+      <Navbar/>
+      <main>{content}</main>
+      <Footer/>
+      <button className="wa-float" onClick={()=>openWA(WA_GEN)} title="Chat on WhatsApp">
+        <WAIcon size={28}/>
+      </button>
+    </>
+  );
+}
+function App(){
+  return <AppProvider><RouterProvider><AppContent/></RouterProvider></AppProvider>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>
