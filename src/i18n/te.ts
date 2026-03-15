@@ -39,7 +39,7 @@ const te: Record<string, string> = {
   'pr.tag':'పాలిషింగ్ హెడ్',
   'pr.det':'వివరాలు',
   'pr.wa':'విచారణ',
-  'pr.now':'WhatsApp లో విచారించండి',
+  'pr.now':'విచారించండి',
   'pr.spec':'సాంకేతిక వివరణలు',
   'pr.feat':'ముఖ్య లక్షణాలు',
   'pr.app':'అప్లికేషన్లు',

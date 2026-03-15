@@ -39,7 +39,7 @@ const mr: Record<string, string> = {
   'pr.tag':'पॉलिशिंग हेड',
   'pr.det':'तपशील पहा',
   'pr.wa':'चौकशी',
-  'pr.now':'WhatsApp वर चौकशी',
+  'pr.now':'चौकशी करा',
   'pr.spec':'तांत्रिक वैशिष्ट्ये',
   'pr.feat':'मुख्य वैशिष्ट्ये',
   'pr.app':'अनुप्रयोग',
