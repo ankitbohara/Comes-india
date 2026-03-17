@@ -115,7 +115,7 @@ const ProductDetailPage: React.FC = () => {
         </div>
 
         {/* Related */}
-        {related.length > 0 && (
+        {related?.length > 0 && (
           <div style={{ paddingBottom: '4rem' }}>
             <div className="label-tag">Other Heads</div>
             <h2 className="section-title" style={{ marginBottom: '2rem' }}>You May Also <span>Consider</span></h2>
